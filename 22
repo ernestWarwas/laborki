@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define rozmiar_tablicy 50
+#define RAND_VALUE_MAX (50 + 1)
+
+void wypelnij_tablice (int* tablica1, int* tablica2)
+{
+
+    int i;
+        for(i = 0 ; i < rozmiar_tablicy ; i++)
+{
+
+        *(tablica1 + i) = rand()%RAND_VALUE_MAX;
+        *(tablica2 + i) = rand()%RAND_VALUE_MAX;
+
+}
+
+}
+
+void suma(int* tablica1, int* tablica2, int rozmiar, int* wynik)
+{
+
+    int i;
+        for(i = 0 ; i < rozmiar ; i++)
+{
+
+        *(wynik + i) = ( *(tablica1 + i) + *(tablica2 + i) );
+
+}
+
+}
+
+float srednia(int* wynik, int rozmiar)
+{
+
+    int i = 0;
+        float srednia = 0;
+
+    for( i = 0 ; i < rozmiar ; i++)
+{
+
+        srednia += *(wynik + i);
+}
+
+    srednia /= (float)rozmiar;
+
+    return srednia;
+
+}
+
+int main (void)
+{
+
+    int tablica1[rozmiar_tablicy];
+    int tablica2[rozmiar_tablicy];
+    int wynik[rozmiar_tablicy];
+
+    wypelnij_tablice(tablica1, tablica2);
+    suma(tablica1, tablica2, rozmiar_tablicy, wynik);
+    printf("Srednia: %.2f", srednia(wynik, rozmiar_tablicy) );
+}
+
