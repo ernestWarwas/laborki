@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+typedef struct value
+{
+    int a;
+    int b;
+};
+
+typedef FILE* file;
+
+void insert_values(struct value *ptr_values){
+    printf("Podaj a i b\n");
+    scanf("%d\n", &ptr_values->a);
+    scanf("%d", &ptr_values->b);
+}
+
+void resolve(struct value *ptr_values, file fp){
+    int i=0;
+    int x = 0, y = 0;
+    fp = fopen("results.txt", "w+");
+    for(i=ptr_values->a; i<=ptr_values->b; i++){
+        x = 2*(i*i)+3*i-1;
+        y = ((i+5)*(i+5))-10;
+        fprintf(fp, "%d\t%d\n", x, y);
+    }
+}
+
+int main(){
+    struct value *ptr_values, values;
+    file fp;
+    ptr_values = &values;
+    insert_values(ptr_values);
+    resolve(ptr_values, fp);
+    return 0;
+}
