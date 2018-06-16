@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define ARRAY_SIZE 50
+#define RAND_VALUE_MAX (50 + 1)
+
+void fill_array(int* first_array, int* second_array) {
+
+    int i;
+
+    for(i = 0 ; i < ARRAY_SIZE ; i++) {
+
+        *(first_array + i) = rand()%RAND_VALUE_MAX;
+        *(second_array + i) = rand()%RAND_VALUE_MAX;
+
+    }
+
+}
+
+void sum(int* first_array, int* second_array, int size, int* result) {
+
+    int i;
+
+    for(i = 0 ; i < size ; i++) {
+
+        *(result + i) = ( *(first_array + i) + *(second_array + i) );
+
+    }
+
+}
+
+float avg(int* result, int size) {
+
+    int i = 0;
+    float avg = 0;
+
+    for( i = 0 ; i < size ; i++) {
+
+        avg += *(result + i);
+
+    }
+
+    avg /= (float)size;
+
+
+    return avg;
+
+}
+
+int main (void) {
+
+
+    int array1[ARRAY_SIZE];
+    int array2[ARRAY_SIZE];
+    int result[ARRAY_SIZE];
+
+
+    fill_array(array1, array2);
+    sum(array1, array2, ARRAY_SIZE, result);
+    printf("AVG: %.2f", avg(result, ARRAY_SIZE) );
+
+
+}
